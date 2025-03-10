@@ -1,0 +1,3 @@
+use("sample_training");
+
+db.zips.find({ _id: ObjectId('5c8eccc1caa187d17ca72f8d')});
