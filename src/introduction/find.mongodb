@@ -1,0 +1,3 @@
+use("sample_micluster");
+
+db.products.find();
