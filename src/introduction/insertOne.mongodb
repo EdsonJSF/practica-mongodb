@@ -1,0 +1,19 @@
+use("sample_micluster");
+
+db.products.insertOne({
+  name: "Hammer",
+  price: 9.99,
+  department: "Hardware",
+  color: "red",
+  sales: 80,
+  stock: 50
+});
+
+db.products.insertOne({
+  name: "Screwdriver",
+  price: 19.99,
+  department: "Hardware",
+  color: "green",
+  sales: 75,
+  stock: 50
+});
