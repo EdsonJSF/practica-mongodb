@@ -1,0 +1,29 @@
+use("sample_micluster");
+
+db.products.drop();
+
+db.products.insertMany(
+  [
+    {
+      name: "Hammer",
+      price: 9.99,
+      department: "Hardware",
+      color: "red",
+      sales: 80,
+      stock: 50,
+    },
+    {
+      name: "Screwdriver",
+      price: 19.99,
+      department: "Hardware",
+      color: "green",
+      sales: 75,
+      stock: 50,
+    },
+  ],
+  {
+    ordered: false, // Continue with others documents if one fails
+  }
+);
+
+db.products.find();
