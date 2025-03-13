@@ -1,0 +1,4 @@
+use("sample_micluster");
+
+// Drop the collection erasing all the documents
+db.products.drop();
