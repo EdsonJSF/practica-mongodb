@@ -1,0 +1,11 @@
+use("sample_micluster");
+
+db.products.updateOne(
+  { _id: ObjectId("67d23731b73b18c033ac20f2") },
+  {
+    $set: { price: 9.99 }, // Update the price
+    $inc: { stock: 10 }, // Increment the stock
+  }
+);
+
+db.products.find();
