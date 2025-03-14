@@ -1,3 +1,9 @@
 use("sample_micluster");
 
-db.products.find();
+db.products
+  .find() // Find all in the collection
+  .skip(1) // Ignore one result
+  .limit(1) // Limit the results to one
+  .sort({ price: 1, stock: -1 }) // Sort 1 for ascending -1 for descending
+  .pretty(); // Show the results in a formatted way
+  // .lean() // Return a plain JavaScript object
