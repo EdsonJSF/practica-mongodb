@@ -1,0 +1,14 @@
+use("sample_micluster");
+
+db.products.updateMany(
+  { price: { $ne: null } },
+  {
+    $set: { promotion: true }, // Add a field
+    $inc: { stock: -10 },
+    $mul: { sales: 2, price: 0.5 },
+    $unset: { color: "" }, // Remove a field
+    $rename: { department: "category" }, // Rename a field
+  }
+);
+
+db.products.find();
