@@ -27,4 +27,16 @@ db.products.updateMany({ category: { $ne: null } }, [
   { $unset: "category" },
 ]);
 
+// $push is used to add an element to an array field
+db.products.updateMany(
+  { categories: { $ne: null } },
+  { $push: { categories: "construction" } }
+);
+
+// $each is used to add multiple elements to an array field
+db.products.updateMany(
+  { categories: { $ne: null } },
+  { $push: { categories: { $each: ["1", "2"] } } }
+);
+
 db.products.find();
