@@ -39,4 +39,16 @@ db.products.updateMany(
   { $push: { categories: { $each: ["1", "2"] } } }
 );
 
+// $pull is used to remove an element from an array field
+db.products.updateMany(
+  { categories: { $ne: null } },
+  { $pull: { categories: "construction" } }
+);
+
+// $in is used to remove multiple elements from an array field
+db.products.updateMany(
+  { categories: { $ne: null } },
+  { $pull: { categories: { $in: ["1", "2"] } } }
+);
+
 db.products.find();
