@@ -11,4 +11,20 @@ db.products.updateMany(
   }
 );
 
+db.products.updateMany({ category: { $ne: null } }, [
+  // Update with aggregation pipeline
+  {
+    $set: {
+      categories: {
+        $concatArrays: [
+          // Concatenate the arrays
+          { $split: ["$category", ","] }, // Convert the string to an array
+          ["tool"], // Add a new category
+        ],
+      },
+    },
+  },
+  { $unset: "category" },
+]);
+
 db.products.find();
