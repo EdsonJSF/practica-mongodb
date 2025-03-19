@@ -1,0 +1,34 @@
+use("sample_micluster");
+
+db.iot.drop();
+
+db.iot.insertMany(
+  [
+    {
+      name: "sensor1",
+      values: [10],
+      createdAt: new Date("2025-01-01"),
+    },
+    {
+      name: "sensor2",
+      values: [20],
+      createdAt: new Date("2025-01-01"),
+    },
+    {
+      name: "sensor1",
+      values: [30],
+      createdAt: new Date("2025-01-02"),
+    },
+  ],
+  {
+    ordered: false,
+  }
+);
+
+db.iot.updateOne(
+  { name: "sensor2", createdAt: new Date("2025-01-02") },
+  { $push: { values: 40 } },
+  { upsert: true } // Create a new document if it doesn't exist
+);
+
+db.iot.find({}, { _id: 0 });
