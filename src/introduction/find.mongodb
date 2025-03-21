@@ -4,6 +4,14 @@ db.products
   .find({
     code: { $eq: null }, // Equal is by default
     stock: { $ne: 0 }, // Not equal
+    price: {
+      $gt: 1, // Greater than
+      $lt: 100, // Less than
+    },
+    sales: {
+      $gte: 1, // Greater than or equal
+      $lte: 100, //  Less than or equal
+    },
   }) // Find all in the collection
   .skip(1) // Ignore one result
   .limit(1) // Limit the results to one
