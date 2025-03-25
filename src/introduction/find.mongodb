@@ -4,6 +4,7 @@ db.products
   .find({
     code: { $eq: null }, // Equal is by default
     stock: { $ne: 0 }, // Not equal
+    name: { $regex: /er$/i }, // Regular expression
     price: {
       $gt: 1, // Greater than
       $lt: 100, // Less than
