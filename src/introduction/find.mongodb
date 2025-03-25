@@ -1,19 +1,29 @@
 use("sample_micluster");
 
 db.products
-  .find({
-    code: { $eq: null }, // Equal is by default
-    stock: { $ne: 0 }, // Not equal
-    name: { $regex: /er$/i }, // Regular expression
-    price: {
-      $gt: 1, // Greater than
-      $lt: 100, // Less than
+  // Find in the collection
+  .find(
+    // Query
+    {
+      code: { $eq: null }, // Equal is by default
+      stock: { $ne: 0 }, // Not equal
+      name: { $regex: /er$/i }, // Regular expression
+      price: {
+        $gt: 1, // Greater than
+        $lt: 100, // Less than
+      },
+      sales: {
+        $gte: 1, // Greater than or equal
+        $lte: 100, //  Less than or equal
+      },
     },
-    sales: {
-      $gte: 1, // Greater than or equal
-      $lte: 100, //  Less than or equal
-    },
-  }) // Find all in the collection
+
+    // Projection
+    {
+      _id: 0, // 0 for exclude the field
+      name: 1, // 1 for include the field
+    }
+  )
   .skip(1) // Ignore one result
   .limit(1) // Limit the results to one
   .sort({ price: 1, stock: -1 }) // Sort 1 for ascending -1 for descending
