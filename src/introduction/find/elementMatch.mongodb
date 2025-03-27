@@ -1,0 +1,13 @@
+use("sample_training");
+
+db.companies.find(
+  {
+    // $elementMatch is used to match an element in an array
+    relationships: { $elemMatch: { "person.last_name": "Smith" } },
+
+    // Another way to do the same thing
+    "relationships.person.last_name": "Smith",
+  },
+
+  { _id: 0, relationships: 1 }
+);
