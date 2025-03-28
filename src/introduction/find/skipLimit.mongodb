@@ -1,0 +1,13 @@
+use("sample_training");
+
+/* This example is a way to paginate the results */
+// If limit is 0, it will return all the results
+
+const page = 0; // page number
+const limit = 10; // results per page
+const skip = page * limit; // number of results to skip
+
+db.zips
+  .find({})
+  .skip(skip) // Ignore a numer of results
+  .limit(limit); // Limit the results to a number
