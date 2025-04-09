@@ -1,0 +1,32 @@
+use("sample_supplies");
+
+/* Look up branches in London only */
+/* Sort purchases by channel and determine the average age of the users. */
+/* Show the average age and channel in ascending order */
+
+/* Clasific salse by chane */
+
+db.sales.aggregate([
+  // Only for the store location in London
+  { $match: { storeLocation: "London" } },
+
+  {
+    $group: {
+      // Group by purchase method
+      _id: "$purchaseMethod",
+      // Calculate the average age
+      avgAge: { $avg: "$customer.age" },
+    },
+  },
+
+  // Show only the purchase method and average age
+  {
+    $project: {
+      _id: 0,
+      method: "$_id",
+      avgAge: { $round: "$avgAge" },
+    },
+  },
+  // Sort by average age
+  { $sort: { avgAge: 1 } },
+]);
